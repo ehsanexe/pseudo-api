@@ -1,5 +1,24 @@
 <%- include('partials/header'); -%>
 
-<h1>Login</h1>
+<form>
+  <h1>Log in</h1>
+  <label for="email">Email:</label>
+  <input type="text" name="email" required />
+  <div class="email err"></div>
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" required />
+  <div class="password err"></div>
+  <button>Submit</button>
+</form>
+
+<script>
+  const form = document.querySelector("form");
+
+  const email = form.email.value;
+  const password = form.password.value;
+
+  console.log(email, password);
+</script>
 
 <%- include('partials/footer'); -%>

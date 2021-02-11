@@ -32,17 +32,17 @@ app.use(authRoutes);
 
 //cookies
 
-app.get("/set-cookies", (req, res) => {
-  res.cookie("newUser", false);
-  res.cookie("isEmployee", false, {
-    maxAge: 1000 * 60 * 60 * 24,
-    httpOnly: true,
-  });
-  res.send("here have a cookie!");
-});
+// app.get("/set-cookies", (req, res) => {
+//   res.cookie("newUser", false);
+//   res.cookie("isEmployee", false, {
+//     maxAge: 1000 * 60 * 60 * 24,
+//     httpOnly: true,
+//   });
+//   res.send("here have a cookie!");
+// });
 
-app.get("/read-cookies", (req, res) => {
-  const cookies = req.cookies;
-  console.log(cookies);
-  res.json(cookies);
-});
+// app.get("/read-cookies", (req, res) => {
+//   const cookies = req.cookies;
+//   console.log(cookies);
+//   res.json(cookies);
+// });

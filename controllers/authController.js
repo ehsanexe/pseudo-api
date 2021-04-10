@@ -84,3 +84,28 @@ module.exports.logout_get = (req, res) => {
   res.cookie("jwtToken", "", { maxAge: 1 });
   res.redirect("/");
 };
+
+module.exports.auth_test = (req, res) => {
+  const token = req.header("Authorization");
+  console.log(token);
+  let t = token.replace("Bearer", "");
+  t = t.replace(" ", "");
+  console.log(t);
+
+  // res.cookie("jwtToken", "", { maxAge: 1 });
+  jwt.verify(t, "my secret key?", async (err, decodedToken) => {
+    // console.log(decodedToken);
+    if (err) {
+      console.log(err.message);
+      // res.locals.user = null;
+      // next();
+      res.status(200).json({ message: err.message });
+    } else {
+      console.log(decodedToken);
+      // let user = await User.findById(decodedToken.id);
+      // res.locals.user = user;
+      // next();
+      res.status(200).json({ message: "success" });
+    }
+  });
+};

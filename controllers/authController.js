@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Todo = require("../models/todo");
 const jwt = require("jsonwebtoken");
 
 const handleError = (err) => {
@@ -108,4 +109,51 @@ module.exports.auth_test = (req, res) => {
       res.status(200).json({ message: "success" });
     }
   });
+};
+
+module.exports.todos_get = async (req, res) => {
+  const { user_fk } = req.body;
+  try {
+    const todo = await Todo.findOne({ user_fk });
+    res.status(200).json(todo);
+  } catch (err) {
+    // console.log(err)
+    res.status(400).json(err);
+  }
+};
+
+module.exports.todos_update = async (req, res) => {
+  const { user_fk, todos } = req.body;
+  try {
+    // const todo = await Todo.findOne();
+
+    const todo = await Todo.updateOne({ user_fk }, { $push: { todos } });
+
+    res.status(200).json(todo);
+  } catch (err) {
+    // console.log(err)
+    res.status(400).json(err);
+  }
+};
+
+module.exports.todos_delete = async (req, res) => {
+  const { user_fk } = req.body;
+  try {
+    const todo = await Todo.deleteOne({ user_fk });
+    res.status(200).json(todo);
+  } catch (err) {
+    // console.log(err)
+    res.status(400).json(err);
+  }
+};
+
+module.exports.todos_create = async (req, res) => {
+  const { user_fk, todos } = req.body;
+  try {
+    const todo = await Todo.create({ user_fk }, { todos });
+    res.status(200).json(todo);
+  } catch (err) {
+    // console.log(err)
+    res.status(400).json(err);
+  }
 };

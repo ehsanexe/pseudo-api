@@ -124,10 +124,15 @@ module.exports.todos_get = async (req, res) => {
 
 module.exports.todos_update = async (req, res) => {
   const { user_fk, todos } = req.body;
+  let user = await Todo.findOne({ user_fk });
+
   try {
     // const todo = await Todo.findOne();
-
-    const todo = await Todo.updateOne({ user_fk }, { $push: { todos } });
+    if (user) {
+      let todo = await Todo.updateOne({ user_fk }, { $push: { todos } });
+    } else {
+      let todo = await Todo.create({ user_fk, todos });
+    }
 
     res.status(200).json(todo);
   } catch (err) {

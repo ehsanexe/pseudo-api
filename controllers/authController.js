@@ -165,3 +165,21 @@ module.exports.todos_create = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
+module.exports.post_image = async (req, res) => {
+  try {
+    if (!req.file) {
+      console.log("No file received");
+      return res.status(200).json({
+        success: false,
+      });
+    } else {
+      console.log("file received");
+      return res.status(200).json({
+        success: true,
+      });
+    }
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};

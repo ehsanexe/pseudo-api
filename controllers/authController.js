@@ -153,7 +153,7 @@ module.exports.todos_delete = async (req, res) => {
 module.exports.todos_create = async (req, res) => {
   const { user_fk, todos } = req.body;
   try {
-    const todo = await Todo.create({ user_fk }, { todos });
+    const todo = await Todo.create({ user_fk, todos });
     res.status(200).json(todo);
   } catch (err) {
     // console.log(err)

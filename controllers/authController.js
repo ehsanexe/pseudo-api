@@ -137,9 +137,12 @@ module.exports.todos_update = async (req, res) => {
 };
 
 module.exports.todos_delete = async (req, res) => {
-  const { user_fk } = req.body;
+  const { user_fk, todo_id } = req.body;
   try {
-    const todo = await Todo.deleteOne({ user_fk });
+    const todo = await Todo.updateOne(
+      { user_fk },
+      { $pull: { todos: { todo_id } } }
+    );
     res.status(200).json(todo);
   } catch (err) {
     // console.log(err)

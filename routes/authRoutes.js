@@ -11,5 +11,7 @@ router.get("/logout", authController.logout_get);
 router.get("/auth", authController.auth_test);
 router.get("/get_todo", authController.todos_get);
 router.post("/update_todo", authController.todos_update);
+router.post("/delete_todo", authController.todos_delete);
+router.post("/create_todo", authController.todos_create);
 
 module.exports = router;

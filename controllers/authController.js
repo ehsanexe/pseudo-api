@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Todo = require("../models/todo");
 const jwt = require("jsonwebtoken");
+// const images = require("../uploads/file-1618997868171.png");
 
 const handleError = (err) => {
   console.log(err.message, err.code);
@@ -179,6 +180,20 @@ module.exports.post_image = async (req, res) => {
         success: true,
       });
     }
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
+module.exports.get_image = async (req, res) => {
+  try {
+    res
+      .status(200)
+      .json("http://localhost:3000/uploads/file-1618997868171.png");
+    // sendFile("./uploads/file-1618997921711.png");
+    // .json({
+    //   imageuri: "http://localhost:3000/uploads/file-1618997868171.png",
+    // });
   } catch (err) {
     res.status(400).json(err);
   }

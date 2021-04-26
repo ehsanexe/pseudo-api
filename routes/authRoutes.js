@@ -28,5 +28,6 @@ router.post("/update_todo", authController.todos_update);
 router.post("/delete_todo", authController.todos_delete);
 router.post("/create_todo", authController.todos_create);
 router.post("/post_image", upload.single("file"), authController.post_image);
+router.get("/get_image", authController.get_image);
 
 module.exports = router;
